@@ -39,7 +39,7 @@ VO~2maks~ testen gjennomføres som en trappetrinnstest der motstanden øker med 
 
 Selv om en tydelig protokoll er essensielt for å sikre reliable tester på en fysiologilab, er det flere hensyn som må tas underveis. Vi begynte hver test med å kalibrere utstyret slik at det var oppdatert etter forholdene til hver deltaker hver klokketime. Ved å gjøre dette minimerer vi risikoen for at utstyret skal måle feil og sørger for at utstyret er i god stand (Tanner ang Gore 2012). Til tross for tydelige protokoller kan det være ulikheter i gjennomføringen av testene knyttet til f.eks. instruksjoner og motivasjon underveis. Flere studier har vist at verbal motivasjon kan påvirke prestasjonen (Halpering, Pyne, and Martin 2015), og det var derfor viktig at hver deltaker gjennomførte testen med samme testleder begge dagene for å minimere variasjonen av motivasjon underveis. Det samme gjelder informasjon knyttet til gjennomføringen, som også kan ha en innvirkning på prestasjon (Halpering, Pyne, and Martin 2015). Ved å sørge for samme testleder begge dagene fikk deltakerne så lik informasjon som mulig begge testdagene og tilnærmet lik motivasjon underveis. Kosthold kan påvirke en deltakers metabolisme og prestasjon, dårlig søvn kan påvirke restitusjon, og metabolske og fyiologiske prosesser negativt (Tanner and Gore 2012). Derfor skulle deltakerne optimalt sett ikke utføre noen form for anstrengende trening, sove like mange timer, samt spise og drikke det samme dagen før test og på selve testdagen for å skape så like testforhold som mulig. Dette ble det informert om, men det ble dog ikke kontrollert for.
 
-
+torkil er tjukk
 **Resultater**
 
 
