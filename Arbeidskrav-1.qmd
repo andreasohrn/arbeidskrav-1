@@ -1,0 +1,210 @@
+---
+title: "Reliabilitet"
+format: pdf
+bibliography: Kvantitativ.bib
+#| message: false
+#| warning: false
+---
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(ggplot2)
+library(gt)
+library(readxl)
+
+masterscience <- read_excel("Data/samlet/Formatert-komplett.xlsx")
+
+```
+
+
+**Introduksjon**
+
+Vi gjennomførte to testdager 26.09.2023 og 28.09.2023 i tiden 08:00-16:00. Hensikten med disse to dagene var å gjennomføre styrketester og O2-tester samt teste reliabilitet. Det er flere faktorer som påvirker både validitet og reliabilitet, og det er viktig å ta høyde for dette under fysiologisk testing. I vårt tilfelle ønsket vi at ml/min O~2~ skulle være lik ved testdag 1 og testdag 2 fordi det ikke skal ha skjedd en endring på to dager, og vi tok derfor en rekke forhåndsregler for å sikre så like testforhold som mulig. 
+Kroppens maksimale oksygenopptak (VO~2maks~) gir informasjon om en persons maksimale aerobe kapasitet, også kalt kondisjon. Oksygenopptaket bestemmes av både sentrale- og perifere faktorer og kan illustreres ved Flick’s likning: 
+	$$VO_2 = (HR x SV) x (aO_2 – vO_2) $$
+En VO~2maks~-test går ut på at man måler hvor mange ml oksygen en person evner å ta opp og omsette per minutt. Oksygenkravet øker lineært med belastningen helt til personen når sin maksimale aerobe kapasitet, da vil kurven flate ut eller eventuelt synke. En persons maksimale oksygenopptak kan beskrives i form av absolutte tall (ml/min) eller som relative tall i forhold til kroppsvekt (ml/kg/min). 
+
+
+**Metode**
+
+
+VO~2maks~ testen gjennomføres som en trappetrinnstest der motstanden øker med 25W hvert minutt til utmattelse/når RPM < 60. VO~2~målinger registreres hvert 30 sek (viktig at dette formidles tydelig). Det er tre ulike alternativer til protokoller. Trykk "Protokoll" og velg enten "VO~2maks~ 100W 25W steg", "VO~2maks~ 150W start 25W økning" eller "VO~2maks~ 250-625W". Protokollen er basert på utøverens fysiske form og erfaring med sykkel. Noter hvilken protokoll utøveren benytter i ferdigstilt Excel-dokument. Synkroniser klokken deltakeren kan se på med PC1 og PC2 slik at deltakeren også har oversikt over tiden på egenhånd. Se etter at utøveren har neseklype og munnstykke i før testen begynner (begynn med forberedelsene 30 sek før målingene starter). Spør om BORG når testen er avsluttet og noter dette i ferdigstilt Excel skjema. Når testen er avsluttet skal data hentes fra PCen og plottes i ferdigstilt Excel skjema. Tallene som skal plottes er de to høyeste målingene av O~2~ ml/min. Dersom det er noe som avviker fra protokoll skal dette noteres i det samme Excel skjemaet.
+@rebeccak.tannerPhysiologicalTestsELite2012
+
+
+**Praktisk gjennomføring/tiltak for å sikre reliabilitet**
+
+Selv om en tydelig protokoll er essensielt for å sikre reliable tester på en fysiologilab, er det flere hensyn som må tas underveis. Vi begynte hver test med å kalibrere utstyret slik at det var oppdatert etter forholdene til hver deltaker hver klokketime. Ved å gjøre dette minimerer vi risikoen for at utstyret skal måle feil og sørger for at utstyret er i god stand (Tanner ang Gore 2012). Til tross for tydelige protokoller kan det være ulikheter i gjennomføringen av testene knyttet til f.eks. instruksjoner og motivasjon underveis. Flere studier har vist at verbal motivasjon kan påvirke prestasjonen (Halpering, Pyne, and Martin 2015), og det var derfor viktig at hver deltaker gjennomførte testen med samme testleder begge dagene for å minimere variasjonen av motivasjon underveis. Det samme gjelder informasjon knyttet til gjennomføringen, som også kan ha en innvirkning på prestasjon (Halpering, Pyne, and Martin 2015). Ved å sørge for samme testleder begge dagene fikk deltakerne så lik informasjon som mulig begge testdagene og tilnærmet lik motivasjon underveis. Kosthold kan påvirke en deltakers metabolisme og prestasjon, dårlig søvn kan påvirke restitusjon, og metabolske og fyiologiske prosesser negativt (Tanner and Gore 2012). Derfor skulle deltakerne optimalt sett ikke utføre noen form for anstrengende trening, sove like mange timer, samt spise og drikke det samme dagen før test og på selve testdagen for å skape så like testforhold som mulig. Dette ble det informert om, men det ble dog ikke kontrollert for.
+
+
+**Resultater**
+
+
+```{r}
+#| echo: false
+#| label: "tbl-over"
+#| tbl-cap: "Oversikt over testresultater etter T1. Gjennomsnitt (Mean), laveste observasjon (Min), høyeste observasjon (Max), og standardavvik (SD)"
+
+vo2 <- masterscience %>% 
+select(id, timepoint, weight, vo2.rel.max, vo2.max) %>% 
+  filter(timepoint == 1) %>% 
+  
+  pivot_longer(names_to = "variable",
+               values_to = "value",
+               cols = weight:vo2.max) %>% 
+group_by(variable) %>% 
+summarise(mean = mean(value),
+          min = min(value),
+          max = max(value),
+          SD = sd(value)) %>% 
+  mutate(variable = factor(variable, 
+                           levels = c("weight",
+                                      "vo2.max",
+                                      "vo2.rel.max"),
+                           labels = c("Weight",
+                                      md("VO2max (ml)"),
+                                      md("VO2max (ml/kg)")))) %>%
+  gt() %>% 
+  fmt_number(decimals = 2) %>% 
+  tab_style(style = cell_text(weight = "bold"),
+            locations = cells_column_labels()) %>% 
+  opt_stylize(style = 1, color = "gray") %>% 
+  cols_label(variable = "Variable",
+             mean = "Mean",
+             min = "Min",
+             max = "Max")
+
+
+            
+            
+
+
+vo2
+          
+
+```
+```{r}
+#| echo: false
+#| tbl-cap: "Oversikt over reliabilitetstall for utvalgte tester. Tabellen viser gjennomsnitt av T1 og T2 (Mean), standardavvik (SD), typical error (TE), variasjonskoeffisient (CV), og limits of agreement (LoA)"
+#| label: "tbl-rel"
+
+
+rel.test <- masterscience %>% 
+  select(id, timepoint, weight, vo2.rel.max, vo2.max) %>% 
+  pivot_longer(names_to = "Variable",
+               values_to = "value",
+               cols = weight:vo2.max) %>% 
+  pivot_wider(names_from = timepoint,
+              values_from = value) %>%
+  rename(pre = "1", post = "2") %>% 
+  mutate(diff = pre - post) %>% 
+  group_by(Variable) %>% 
+  summarise(m = mean(c(pre, post), na.rm = T),
+            sd = sd(diff, na.rm = T), 
+            te = sd / sqrt(2), 
+            cv = 100 * (te / m), 
+            LoA = qt(0.975, 7) * sd) %>%
+  mutate(Variable = factor(Variable, 
+                           levels = c("weight",
+                                      "vo2.max",
+                                      "vo2.rel.max"),
+                           labels = c("Weight",
+                                      ("VO2max (ml/min)"),
+                                      ("VO2max (ml/min/kg)")))) %>%
+                                   
+  gt() %>% 
+ fmt_number(decimals = 2) %>% 
+  tab_style(style = cell_text(weight = "bold"),
+                locations = cells_column_labels()) %>% 
+  opt_stylize(style = 1, color = "gray") %>% 
+cols_label(m = "Mean",
+           sd = "SD",
+           te = "TE",
+           cv = "CV")
+
+  
+ 
+
+rel.test
+```
+
+```{r}
+#| echo: false
+#| fig-cap: "Sammenligning av oksygenopptak målt i ml/min mellom testdag 1 og testdag 2 for hver forsøksperson"
+#| label: "fig-test"
+
+
+figur <- masterscience %>% 
+  select(id, timepoint, weight, vo2.rel.max, vo2.max) %>% 
+  pivot_longer(names_to = "Variable",
+               values_to = "value",
+               cols = weight:vo2.max) %>% 
+  filter(Variable == "vo2.max") %>% 
+  mutate(id = factor(id),
+    x = factor(timepoint, labels = c("T1", "T2"))) %>% 
+  
+  ggplot(aes(x = x, y = value, col = id, group = id)) +
+  geom_point() +
+  geom_line() +
+  ylab("Oksygenopptak (ml/min)") +
+  xlab("Testdag") +
+  theme_light(
+  base_size = 12)
+ 
+
+
+  
+figur
+  
+
+
+```
+```{r}
+#| echo: false
+
+bland_altman <- masterscience %>% 
+  select(id, timepoint, weight, vo2.rel.max, vo2.max) %>% 
+  pivot_longer(names_to = "Variable",
+               values_to = "value",
+               cols = weight:vo2.max) %>% 
+  pivot_wider(names_from = timepoint,
+              values_from = value) %>%
+  rename(pre = "1", post = "2") %>% 
+  filter(Variable == "vo2.max") %>% 
+  mutate(diff = pre - post,
+         m.diff = mean(diff),
+         sd = sd(diff),
+         u.loa = m.diff + qt(0.975, 7) * sd,
+         l.loa = m.diff - qt(0.975, 7) * sd) %>% 
+  group_by(id) %>% 
+  mutate(avg = mean(c(pre, post))) %>% 
+  ungroup() 
+
+  
+
+
+```
+
+
+
+```{r}
+#| echo: false
+#| label: "fig-bland"
+#| fig-cap: "Bland-Altman-Plot for maksimalt oksygenopptak (ml/min). Stiplete linjer tilsvarer øvre og nedre limits of agreement. Heltrukken linje tilsvarer gjennomsnittet av differansen mellom T1 og T2"
+ggplot(bland_altman, aes(x = avg, y = diff)) +
+  geom_point(size=2) +
+  geom_hline(yintercept = bland_altman$m.diff) +
+  geom_hline(yintercept = bland_altman$l.loa, 
+             color = "red", linetype= "dashed") +
+  geom_hline(yintercept = bland_altman$u.loa, 
+             color = "red", 
+             linetype= "dashed") +
+  scale_y_continuous(limits = c(-500, 500)) +
+  scale_x_continuous(limits = c(1000, 6000)) +
+  ggtitle("Bland-Altman-Plot") +
+  ylab("Forskjell mellom målingene") +
+  xlab("gjennomsnittlig måling av av oksygenopptak (ml/min)")
+```
+

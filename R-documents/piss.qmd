@@ -1,0 +1,151 @@
+---
+title: "Arbeidskrav-1"
+format: html
+---
+Loading nessecery packages and data
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(gt)
+library(readxl)
+
+masterscience <- read_excel("~/Desktop/R-Studio-prosjekt/arbeidskrav-1-reliability/Data/samlet/Formatert-komplett.xlsx")
+
+```
+
+
+
+Creating a table showing the results from pre-test
+
+```{r}
+vo2 <- masterscience %>% 
+select(id, timepoint, weight, vo2.rel.max, vo2.max) %>% 
+  filter(timepoint == 1) %>% 
+  
+  pivot_longer(names_to = "variable",
+               values_to = "value",
+               cols = weight:vo2.max) %>% 
+group_by(variable) %>% 
+summarise(mean = mean(value),
+          min = min(value),
+          max = max(value),
+          SD = sd(value)) %>% 
+  gt() %>% 
+  fmt_number(decimals = 2) %>% 
+  cols_label(Variable = html())
+
+
+
+vo2
+          
+
+```
+
+Creating a table showing mean of both test days, CV, TE and LOA
+
+```{r}
+
+rel.test <- masterscience %>% 
+  select(id, timepoint, weight, vo2.rel.max, vo2.max) %>% 
+  pivot_longer(names_to = "Variable",
+               values_to = "value",
+               cols = weight:vo2.max) %>% 
+  pivot_wider(names_from = timepoint,
+              values_from = value) %>%
+  rename(pre = "1", post = "2") %>% 
+  mutate(diff = pre - post) %>% 
+  group_by(Variable) %>% 
+  summarise(m = mean(c(pre, post), na.rm = T),
+            sd = sd(diff, na.rm = T), 
+            te = sd / sqrt(2), 
+            cv = 100 * (sd / m), 
+            LoA = qt(0.975, 7) * te) %>%
+  mutate(Variable = factor(Variable, 
+                           levels = c("weight",
+                                      "vo2.max",
+                                      "vo2.rel.max"),
+                           labels = c("Weight",
+                                      md("VO2max (ml)"),
+                                      md("VO2max (%kg)")))) %>%
+                                   
+  gt() %>% 
+ fmt_number(decimals = 2)
+  
+ 
+
+rel.test
+```
+figur 1
+```{r}
+
+figur <- masterscience %>% 
+  select(id, timepoint, weight, vo2.rel.max, vo2.max) %>% 
+  pivot_longer(names_to = "Variable",
+               values_to = "value",
+               cols = weight:vo2.max) %>% 
+  filter(Variable == "vo2.max") %>% 
+  mutate(id = factor(id),
+    x = factor(timepoint, labels = c("T1", "T2"))) %>% 
+  
+  ggplot(aes(x = x, y = value, col = id, group = id)) +
+  geom_point() +
+  geom_line() +
+  ylab("oksygenopptak (ml/min)") +
+  xlab("Testdag")
+
+  
+figur
+  
+
+
+```
+
+
+Gjøre klar data for å lage et bland-altman plot
+
+
+```{r}
+
+bland_altman <- masterscience %>% 
+  select(id, timepoint, weight, vo2.rel.max, vo2.max) %>% 
+  pivot_longer(names_to = "Variable",
+               values_to = "value",
+               cols = weight:vo2.max) %>% 
+  pivot_wider(names_from = timepoint,
+              values_from = value) %>%
+  rename(pre = "1", post = "2") %>% 
+  filter(Variable == "vo2.max") %>% 
+  mutate(diff = pre - post,
+         m.diff = mean(diff),
+         sd = sd(diff),
+         u.loa = m.diff + (1.96 * sd),
+         l.loa = m.diff - (1.96 * sd)) %>% 
+  group_by(id) %>% 
+  mutate(avg = mean(c(pre, post))) %>% 
+  ungroup() %>% 
+print()
+  
+
+
+```
+
+Lage et bland altmanplot
+
+```{r}
+
+ggplot(bland_altman, aes(x = avg, y = diff)) +
+  geom_point(size=2) +
+  geom_hline(yintercept = bland_altman$m.diff) +
+  geom_hline(yintercept = bland_altman$l.loa, 
+             color = "red", linetype= "dashed") +
+  geom_hline(yintercept = bland_altman$u.loa, 
+             color = "red", 
+             linetype= "dashed") +
+  scale_y_continuous(limits = c(-400, 400)) +
+  scale_x_continuous(limits = c(1000, 6000)) +
+  ggtitle("Bland-Altman Plot") +
+  ylab("Difference Between Measurements") +
+  xlab("Average Measurement")
+```
+
+hei
