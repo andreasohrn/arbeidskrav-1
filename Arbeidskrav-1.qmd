@@ -26,9 +26,9 @@ Kroppens maksimale oksygenopptak (VO~2maks~) gir informasjon om en persons maksi
 	$$VO_2 = (HR x SV) x (aO_2 – vO_2) $$
 En VO~2maks~-test går ut på at man måler hvor mange ml oksygen en person evner å ta opp og omsette per minutt. Oksygenkravet øker lineært med belastningen helt til personen når sin maksimale aerobe kapasitet, da vil kurven flate ut eller eventuelt synke. En persons maksimale oksygenopptak kan beskrives i form av absolutte tall (ml/min) eller som relative tall i forhold til kroppsvekt (ml/kg/min). 
 
-yo
 
-**Metode**
+
+##Metode##
 
 
 VO~2maks~ testen gjennomføres som en trappetrinnstest der motstanden øker med 25W hvert minutt til utmattelse/når RPM < 60. VO~2~målinger registreres hvert 30 sek (viktig at dette formidles tydelig). Det er tre ulike alternativer til protokoller. Trykk "Protokoll" og velg enten "VO~2maks~ 100W 25W steg", "VO~2maks~ 150W start 25W økning" eller "VO~2maks~ 250-625W". Protokollen er basert på utøverens fysiske form og erfaring med sykkel. Noter hvilken protokoll utøveren benytter i ferdigstilt Excel-dokument. Synkroniser klokken deltakeren kan se på med PC1 og PC2 slik at deltakeren også har oversikt over tiden på egenhånd. Se etter at utøveren har neseklype og munnstykke i før testen begynner (begynn med forberedelsene 30 sek før målingene starter). Spør om BORG når testen er avsluttet og noter dette i ferdigstilt Excel skjema. Når testen er avsluttet skal data hentes fra PCen og plottes i ferdigstilt Excel skjema. Tallene som skal plottes er de to høyeste målingene av O~2~ ml/min. Dersom det er noe som avviker fra protokoll skal dette noteres i det samme Excel skjemaet.
