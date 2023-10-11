@@ -26,6 +26,7 @@ Kroppens maksimale oksygenopptak (VO~2maks~) gir informasjon om en persons maksi
 	$$VO_2 = (HR x SV) x (aO_2 – vO_2) $$
 En VO~2maks~-test går ut på at man måler hvor mange ml oksygen en person evner å ta opp og omsette per minutt. Oksygenkravet øker lineært med belastningen helt til personen når sin maksimale aerobe kapasitet, da vil kurven flate ut eller eventuelt synke. En persons maksimale oksygenopptak kan beskrives i form av absolutte tall (ml/min) eller som relative tall i forhold til kroppsvekt (ml/kg/min). 
 
+yo
 
 **Metode**
 
