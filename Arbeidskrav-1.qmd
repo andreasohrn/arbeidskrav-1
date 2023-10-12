@@ -59,8 +59,8 @@ summarise(mean = mean(value),
                                       "vo2.max",
                                       "vo2.rel.max"),
                            labels = c("Weight",
-                                      md("VO2max (ml)"),
-                                      md("VO2max (ml/kg)")))) %>%
+                                      md("VO2max (ml/min)"),
+                                      md("VO2max (ml/min/kg)")))) %>%
   gt() %>% 
   fmt_number(decimals = 2) %>% 
   tab_style(style = cell_text(weight = "bold"),
