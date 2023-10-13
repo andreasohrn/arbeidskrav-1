@@ -87,7 +87,7 @@ Variasjonskoeffisienten (CV) angir et spredningsmål for verdiene i et datasett.
 
 Typical Error (TE) eller standardfeil er variabiliteten hos hver enkelt verdi og tenkes å kunne visualisere feilmarginen av et estimat. Eksempelvis vil en standardfeil kunne forklares gjennom biologiske prosesser som påvirker for eksempel kraftutvikling, som følge av mentale eller fysiske faktorer (Hopkins, 2000).
 
-Limits of agreement (LoA) viser til 1,96 standardavvik fra den gjennomsnittlige differansen mellom T1 og T2. Dette er illustrert i @fig-bland med et Bland-Altman-Plot..
+Limits of agreement (LoA) viser til 1,96 standardavvik fra den gjennomsnittlige differansen mellom T1 og T2. Dette er illustrert i @fig-bland med et Bland-Altman-Plot.
 
 ```{r}
 #| echo: false
