@@ -1,7 +1,8 @@
 ---
 title: "Reliabilitet"
 format: pdf
-
+bibliography: qm.bib
+csl: apa.csl
 
 #| message: false
 #| warning: false
@@ -23,15 +24,16 @@ masterscience <- read_excel("Data/samlet/Formatert-komplett.xlsx")
 
 Vi gjennomførte to testdager 26.09.2023 og 28.09.2023 i tiden 08:00-16:00. Hensikten med disse to dagene var å gjennomføre fysiologiske tester med høy grad av reliabilitet. Det er flere faktorer som påvirker både validitet og reliabilitet, og det er viktig å ta høyde for dette under fysiologisk testing. Vi gjennomførte testdag 1 og testdag 2 med kun én dag mellom for å sikre at deltakerne var på tilsvarende fysiologisk nivå ved begge testene. Vi tok derfor en rekke forhåndsregler for å sikre så like testforhold som mulig.
 
+
 Kroppens maksimale oksygenopptak (VO~2maks~) gir informasjon om en persons maksimale aerobe kapasitet. Oksygenopptaket bestemmes av både sentrale- og perifere faktorer og kan illustreres ved Flick's likning: $$VO_2 = (HR x SV) x (aO_2 – vO_2) $$ En VO~2maks~-test går ut på at man måler hvor mange ml oksygen en person evner å ta opp og omsette per minutt. Oksygenkravet øker lineært med belastningen helt til personen når sin maksimale aerobe kapasitet, da vil kurven flate ut eller eventuelt synke. En persons maksimale oksygenopptak kan beskrives både i form av absolutte tall (ml/min) eller som relative tall i forhold til kroppsvekt (ml/kg/min).
 
 # Metode
 
-VO~2maks~ testen gjennomføres som en trappetrinnstest der motstanden øker med 25W hvert minutt til utmattelse/når RPM \< 60. VO~2~målinger registreres hvert 30 sek (viktig at dette formidles tydelig). Deltakerne startet twesten på enten 150W, 200W eller 250W avhengig av fysisk form og erfaring med sykkel. Hvert minutt øker watten med 25 helt til utmattelse. Etter endt test ble informasjon innhentet og plottet i ferdigstilt Excel-dokument.
-
+VO~2maks~testen gjennomføres som en trappetrinnstest der motstanden øker med 25W hvert minutt til utmattelse/når RPM \< 60. VO~2~målinger registreres hvert 30 sek. Deltakerne startet testen på enten 150W, 200W eller 250W avhengig av fysisk form og erfaring med sykkel. Hvert minutt øker watten med 25 helt til utmattelse. Etter endt test ble informasjon innhentet og plottet i ferdigstilt Excel-dokument.
+\newpage
 **Praktisk gjennomføring/tiltak for å sikre reliabilitet**
 
-Selv om en tydelig protokoll er essensielt for å sikre reliable tester på en fysiologilab, er det flere hensyn som må tas underveis. Vi begynte hver test med å kalibrere utstyret slik at det var oppdatert etter forholdene til hver deltaker hver klokketime, for å minimere risikoen for at utstyret skal måle feil (Tanner and Gore 2012). For å sikre lik grad av verbal motivasjon og formulering av instruks, valgte v å bruke samme testleder på hver person (Halpering, Pyne, and Martin 2015).Vi ha også instrukser om at kosthold og søvn skulle være likt før og på testdagen, samt ingen trening mellom testene da detet er faktorer som kan påvirke metabolisme og prestasjon, dette ble dog ikke kontrollert. (Tanner and Gore 2012).
+Selv om en tydelig protokoll er essensielt for å sikre reliable tester på en fysiologilab, er det flere hensyn som må tas underveis. Vi begynte hver test med å kalibrere utstyret slik at det var oppdatert etter forholdene til hver deltaker hver klokketime, for å minimere risikoen for at utstyret skal måle feil [@tannerPhysiologicalTestsElite2013]. For å sikre lik grad av verbal motivasjon og formulering av instruks, valgte v å bruke samme testleder på hver person [@halperinThreatsInternalValidity2015a]. Vi ha også instrukser om at kosthold og søvn skulle være likt før og på testdagen, samt ingen trening mellom testene da detet er faktorer som kan påvirke metabolisme og prestasjon, dette ble dog ikke kontrollert [@tannerPhysiologicalTestsElite2013].
 
 # Resultater
 
@@ -81,11 +83,11 @@ vo2
 
 Formålet med dette prosjektet var å teste reliabiliteten på utvalgte fysiologiske mål mellom T1 og T2. @fig-test gir en oversikt over resultatet på T1 og T2 for hver ID. Oversikt over aktuelle reliabilitetstall finner man i @tbl-rel.
 
-Standardavvik (SD) kan forklares ved et mål på hvor stor spredningen er i forhold til datapunktenes middelverdi/gjennomsnitt, og definerer hvert enkelt datapunkts avvik fra gjennomsnittet (NTNU, u.å.).
+Standardavvik (SD) kan forklares ved et mål på hvor stor spredningen er i forhold til datapunktenes middelverdi/gjennomsnitt, og definerer hvert enkelt datapunkts avvik fra gjennomsnittet [@spiegelhalterArtStatisticsLearning2020].
 
-Variasjonskoeffisienten (CV) angir et spredningsmål for verdiene i et datasett. CV utrykker ofte variasjon i forhold til gjennomsnittsverdien og angis i prosent (Løvås, 1999, s. 40).
+Variasjonskoeffisienten (CV) angir et spredningsmål for verdiene i et datasett. CV utrykker ofte variasjon i forhold til gjennomsnittsverdien og angis i prosent [@spiegelhalterArtStatisticsLearning2020].
 
-Typical Error (TE) eller standardfeil er variabiliteten hos hver enkelt verdi og tenkes å kunne visualisere feilmarginen av et estimat. Eksempelvis vil en standardfeil kunne forklares gjennom biologiske prosesser som påvirker for eksempel kraftutvikling, som følge av mentale eller fysiske faktorer (Hopkins, 2000).
+Typical Error (TE) eller standardfeil er variabiliteten hos hver enkelt verdi og tenkes å kunne visualisere feilmarginen av et estimat. Eksempelvis vil en standardfeil kunne forklares gjennom biologiske prosesser som påvirker for eksempel kraftutvikling, som følge av mentale eller fysiske faktorer [@hopkinsMeasuresReliabilitySports2000].
 
 Limits of agreement (LoA) viser til 1,96 standardavvik fra den gjennomsnittlige differansen mellom T1 og T2. Dette er illustrert i @fig-bland med et Bland-Altman-Plot.
 
@@ -158,13 +160,10 @@ figur <- masterscience %>%
   xlab("Testdag") +
   theme_light(
   base_size = 9)
- 
 
-
-  
 figur
 ```
-
+\newpage
 ```{r}
 #| echo: false
 
@@ -207,3 +206,5 @@ ggplot(bland_altman, aes(x = avg, y = diff)) +
   ylab("Forskjell mellom målingene") +
   xlab("Gjennomsnittlig måling av oksygenopptak (ml/min)")
 ```
+\newpage
+# Referanser
