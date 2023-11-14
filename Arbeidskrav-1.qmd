@@ -205,8 +205,9 @@ ggplot(bland_altman, aes(x = avg, y = diff)) +
   scale_y_continuous(limits = c(-500, 500)) +
   scale_x_continuous(limits = c(1000, 6000)) +
   ggtitle("Bland-Altman-Plot") +
-  ylab("Forskjell mellom målingene") +
-  xlab("Gjennomsnittlig måling av oksygenopptak (ml/min)")
+  ylab("Forskjell mellom maalingene") +
+  xlab("Gjennomsnittlig maaling av oksygenopptak (ml/min)")
+
 ```
 
 \newpage
